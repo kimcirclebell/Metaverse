@@ -22,6 +22,6 @@ public class SceneChangeManager : MonoBehaviour
 
     public void SceneChange(Scenes scene)
     {
-        SceneManager.LoadScene(scene.ToString(), LoadSceneMode.Additive);
+        SceneManager.LoadScene(scene.ToString(), LoadSceneMode.Single);
     }
 }

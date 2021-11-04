@@ -17,6 +17,6 @@ public class StartScreen : MonoBehaviour
 
         Debug.Log("ID : " + ID + "\nPassword : " + Password);
 
-        SceneManager.LoadScene("TownScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("TownScene", LoadSceneMode.Single);
     }
 }

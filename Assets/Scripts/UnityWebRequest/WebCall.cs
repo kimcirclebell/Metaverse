@@ -9,21 +9,34 @@ public class WebCall : MonoBehaviour
     public Text moneyText;
     string money;
 
-    readonly string getURL = "";
-    readonly string postURL = "";
+    readonly string URL = "http://10.80.162.103:8000";
     void Start()
     {
         moneyText.text = "Dwonloading Money Data...";
     }
-    
-    public void GetMoney()
-    {
-        StartCoroutine(GetRequest());
-    }
 
-    IEnumerator GetRequest()
+    IEnumerator PostRequest(string extraurl, string post)
     {
-        UnityWebRequest www = UnityWebRequest.Get(getURL);
+        List<IMultipartFormSection> wwwForm = new List<IMultipartFormSection>();
+        wwwForm.Add(new MultipartFormDataSection("curMoneyKey", post));
+
+        UnityWebRequest www = UnityWebRequest.Post(URL + extraurl, wwwForm);
+
+        yield return www.SendWebRequest();
+
+        if (www.isHttpError || www.isNetworkError)
+        {
+            Debug.LogError(www.error);
+        }
+
+        else
+        {
+            moneyText.text = www.downloadHandler.text;
+        }
+    }
+    IEnumerator GetRequest(string extraurl)
+    {
+        UnityWebRequest www = UnityWebRequest.Get(URL + extraurl);
 
         yield return www.SendWebRequest();
 
@@ -38,29 +51,103 @@ public class WebCall : MonoBehaviour
         }
     }
 
-    public void SendMoneyData()
+    void SignUp(int id, string password, string phoneNum, string birthday, string name, string nickname, string profile, string simplePassword, string gender)
     {
-        moneyText.text = "Sending Data...";
-        StartCoroutine(PostRequest(money));
+
     }
 
-    IEnumerator PostRequest(string currMoney)
+    void Login(int id, string password)
     {
-        List<IMultipartFormSection> wwwForm = new List<IMultipartFormSection>();
-        wwwForm.Add(new MultipartFormDataSection("curMoneyKey", currMoney));
 
-        UnityWebRequest www = UnityWebRequest.Post(postURL, wwwForm);
+    }
 
-        yield return www.SendWebRequest();
+    void Simple_Login(string simplePassword)
+    {
 
-        if(www.isHttpError || www.isNetworkError)
-        {
-            Debug.LogError(www.error);
-        }
+    }
 
-        else
-        {
-            moneyText.text = www.downloadHandler.text;
-        }
+    void Duplicate_Check(int id)
+    {
+
+    }
+
+    void Self_Certification(string name, string birthday)
+    {
+
+    }
+
+    void Account()
+    {
+
+    }
+
+    void Account(string name, string passwored)
+    {
+
+    }
+
+    void Account_Add()
+    {
+
+    }
+
+    void Account_Cofirm(int [] accountnumbers)
+    {
+
+    }
+
+    void Account_Money_Send(int money, int sendAccountNumber, int recieveAccountNumber, string bankNumber, string password)
+    {
+
+    }
+
+    void Account_Money_Get(int money, int sendAccountNumber, int recieveAccountNumber, string bankNumber, string password)
+    {
+
+    }
+
+    void Account(int accountNumber, string password)
+    {
+
+    }
+
+    void Stats_Money()
+    {
+
+    }
+
+    void Stats_Users()
+    {
+
+    }
+
+    void Stats()
+    {
+
+    }
+
+    void Stats(int id, string password)
+    {
+
+    }
+
+    void Profile()
+    {
+
+    }
+
+    void Profile(string profile, string birthday, string name, string nickname, string gender)
+    {
+        
+    }
+
+    void Account_PhoneNumber(string phonenumber)
+    {
+
+    }
+
+    void Account(int senderAccount, int recieverAccount, int money)
+    {
+
     }
 }
